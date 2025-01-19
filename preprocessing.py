@@ -19,21 +19,21 @@ os.makedirs(os.path.join(SAVE_DIR_PATH, "val"), exist_ok=True)
 
 with open(os.path.join(SAVE_DIR_PATH,"train","train_text_indo.txt"), "w", encoding='utf-8') as f:
     for i in range(len(ds_train)):
-        f.write(ds_train[i]["text_indo"] + "\n")
+        f.write(ds_train[i]["text_indo"].lower() + "\n")
 
 with open(os.path.join(SAVE_DIR_PATH,"val","val_text_indo.txt"), "w", encoding='utf-8') as f:
     for i in range(len(ds_val)):
-        f.write(ds_val[i]["text_indo"] + "\n")
+        f.write(ds_val[i]["text_indo"].lower() + "\n")
 
 print("Text indo files created.")
 print("Creating text eng files...")
 
 with open(os.path.join(SAVE_DIR_PATH,"train","train_text_eng.txt"), "w", encoding='utf-8') as f:
     for i in range(len(ds_train)):
-        f.write(ds_train[i]["text_en"] + "\n")
+        f.write(ds_train[i]["text_en"].lower() + "\n")
 
 with open(os.path.join(SAVE_DIR_PATH,"val","val_text_eng.txt"), "w",encoding='utf-8') as f:
     for i in range(len(ds_val)):
-        f.write(ds_val[i]["text_en"] + "\n")
+        f.write(ds_val[i]["text_en"].lower() + "\n")
 
 print("Text eng files created.")
