@@ -1,5 +1,5 @@
 python train_tokenizer.py --train_corpus_ind "C:\Users\naufal\Startup\datasets\train\train_text_indo.txt" `
 --train_corpus_eng "C:\Users\naufal\Startup\datasets\train\train_text_eng.txt" `
---vocab_size 50000 `
+--vocab_size 8192 `
 --save_dir_root "C:\Users\naufal\Startup\datasets\tokenizers" `
 --special_tokens "<start>" "<end>" "<pad>" "<unk>"
