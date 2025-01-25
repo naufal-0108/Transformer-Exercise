@@ -370,14 +370,14 @@ print(f"Input Eng: {sentence_inputs_eng_encoded}")
 print(f"Target: {sentence_target_encoded}")
 print()
 
-num_layers = 12
+num_layers = 8
 d_model = 768
-num_heads = 12
+num_heads = 8
 n_dense = 512
 num_vocabs_ind = 8192
 num_vocabs_eng = 8192
-max_len_ind = 128
-max_len_eng = 128
+max_len_ind = 512
+max_len_eng = 512
 dropout_rate = 0.1
 
 transformers = transfomer_model(num_layers=num_layers,
