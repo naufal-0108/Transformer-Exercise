@@ -29,11 +29,11 @@ with open(val_eng, 'r', encoding='utf-8') as file:
     val_content_eng = file.readlines()
     val_content_eng_clean  = [s.replace("\n", "").strip() for s in val_content_eng]
 
-train_indo_encoder_inputs = train_content_indo_clean
+train_indo_encoder_inputs = ["<start>" + s + "<end>" for s in train_content_indo_clean]
 train_eng_decoder_inputs  = ["<start>" + s for s in tqdm(train_content_eng_clean)]
 train_eng_decoder_targets = [s + "<end>" for s in tqdm(train_content_eng_clean)]
 
-val_indo_encoder_inputs = val_content_indo_clean
+val_indo_encoder_inputs = ["<start>" + s + "<end>" for s in val_content_indo_clean]
 val_eng_decoder_inputs = ["<start>" + s for s in tqdm(val_content_eng_clean)]
 val_eng_decoder_targets = [s + "<end>" for s in tqdm(val_content_eng_clean)]
 
@@ -47,47 +47,47 @@ for s in tqdm(train_indo_encoder_inputs):
     encoded_s = tokenizer_ind.encode(s).ids
     len_s = len(encoded_s)
     n_pad = max_len - len_s
-    encoded_s = encoded_s + n_pad*[2]
+    encoded_s = encoded_s + n_pad*[0]
     train_indo_encoded.append(encoded_s)
 
 for s in tqdm(train_eng_decoder_inputs):
     encoded_s = tokenizer_eng.encode(s).ids
     len_s = len(encoded_s)
     n_pad = max_len - len_s
-    encoded_s = encoded_s + n_pad*[2]
+    encoded_s = encoded_s + n_pad*[0]
     train_eng_encoded_i.append(encoded_s)
 
 for s in tqdm(train_eng_decoder_targets):
     encoded_s = tokenizer_eng.encode(s).ids
     len_s = len(encoded_s)
     n_pad = max_len - len_s
-    encoded_s = encoded_s + n_pad*[2]
+    encoded_s = encoded_s + n_pad*[0]
     train_eng_encoded_t.append(encoded_s)
 
 for s in tqdm(val_indo_encoder_inputs):
     encoded_s = tokenizer_ind.encode(s).ids
     len_s = len(encoded_s)
     n_pad = max_len - len_s
-    encoded_s = encoded_s + n_pad*[2]
+    encoded_s = encoded_s + n_pad*[0]
     val_indo_encoded.append(encoded_s)
 
 for s in tqdm(val_eng_decoder_inputs):
     encoded_s = tokenizer_eng.encode(s).ids
     len_s = len(encoded_s)
     n_pad = max_len - len_s
-    encoded_s = encoded_s + n_pad*[2]
+    encoded_s = encoded_s + n_pad*[0]
     val_eng_encoded_i.append(encoded_s)
 
 for s in tqdm(val_eng_decoder_targets):
     encoded_s = tokenizer_eng.encode(s).ids
     len_s = len(encoded_s)
     n_pad = max_len - len_s
-    encoded_s = encoded_s + n_pad*[2]
+    encoded_s = encoded_s + n_pad*[0]
     val_eng_encoded_t.append(encoded_s)
 
 
 def create_mask(tokens):
-    mask = tf.cast(tf.equal(tokens, 2), dtype=tf.float32)
+    mask = tf.cast(tf.equal(tokens, 0), dtype=tf.float32)
     return mask
 
 print(train_indo_encoder_inputs[0])
